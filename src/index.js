@@ -1,5 +1,8 @@
 import timer from './modules/timer.js';
-// const twoJS = require('./modules/two.js');
+import menu from './modules/menu.js';
+import modal from './modules/modal.js';
 
-timer("28 october 2022")
-// twoJS();
+
+timer("28 october 2022");
+menu();
+modal();
