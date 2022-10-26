@@ -14,7 +14,11 @@ const modal = () => {
         if (screen.width > 768)
             modalShow();
     }));
-    closeBtn.addEventListener("click", () => modal.style.display = "none");
+    closeBtn.addEventListener("click", () => {
+        count = 50;
+        modal.style.transform = 'translateY(100%)';
+        modal.style.display = "none"
+    });
 
     const modalShow = () => {
         if (count > 0) {
