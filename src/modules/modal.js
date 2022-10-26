@@ -11,8 +11,8 @@ const modal = () => {
 
     buttons.forEach(item => item.addEventListener("click", () => {
         modal.style.display = "block";
-        if (screen.width > 768)
-            modalShow();
+        screen.width > 768 ? modalShow() : modal.style.transform = '';
+
     }));
     closeBtn.addEventListener("click", () => {
         count = 50;
