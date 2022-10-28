@@ -14,7 +14,7 @@ const formValid = () => {
 
     formItemsEmail.forEach((formItemEmail) => {
         formItemEmail.addEventListener("input", () => {
-            formItemEmail.value = formItemEmail.value.replace(/[^а-яА-Я\d\@\-\_\.\!\~\*\']+/g, "");
+            formItemEmail.value = formItemEmail.value.replace(/[^a-zA-Z\d\@\-\_\.\!\~\*\']+/g, "");
         })
     })
 
