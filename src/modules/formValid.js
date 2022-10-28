@@ -27,7 +27,6 @@ const formValid = () => {
     formItemsText.forEach((formItemText) => {
         formItemText.addEventListener("blur", () => {
             console.log("Сообщение");
-            formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/g, "");
             formItemText.value = formItemText.value.replace(/[\s]+/g, " ");
             formItemText.value = formItemText.value.replace(/[\-]+/g, "-");
             formItemText.value = formItemText.value.replace(/[\s\-]+/g, "-");
@@ -42,7 +41,6 @@ const formValid = () => {
 
     formItemsEmail.forEach((formItemEmail) => {
         formItemEmail.addEventListener("blur", () => {
-            formItemEmail.value = formItemEmail.value.replace(/[^а-яА-Я\d\@\-\_\.\!\~\*\']+/g, "");
             formItemEmail.value = formItemEmail.value.replace(/[\-]+/g, "-");
             formItemEmail.value = formItemEmail.value.replace(/[\s\-]+/g, "-");
             formItemEmail.value = formItemEmail.value.replace(/^[\s\-]+/g, "");
@@ -52,7 +50,6 @@ const formValid = () => {
 
     formItemsTel.forEach((formItemTel) => {
         formItemTel.addEventListener("blur", () => {
-            formItemTel.value = formItemTel.value.replace(/[^\d\\(\\)\-]+/g, "");
             formItemTel.value = formItemTel.value.replace(/[\-]+/g, "-");
             formItemTel.value = formItemTel.value.replace(/^[\s\-]+[\s\-]+/g, "");
             formItemTel.value = formItemTel.value.replace(/[\s\-]+$/g, "");
