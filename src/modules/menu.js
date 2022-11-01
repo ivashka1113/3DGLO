@@ -20,32 +20,6 @@ const menu = () => {
     }
 
 
-    // console.log(e.target.closest(".menu"))
-    // if (e.target.closest(".menu") || e.target.closest(".close-btn")) {
-    //     handleMenu();
-
-    // }
-    // console.log(e);
-    // switch (true) {
-
-    //     case !e.target.closest('main>a'): //кнопка скролла на следующий слайд
-    //         smoothScroll(e, e.target.closest('main>a'));
-    //         break;
-    //     case !e.target.closest(".menu"): //кнопка открытия меню
-    //         handleMenu();
-    //         break;
-    //     case e.target.closest(".close-btn"): //кнопка закрытия меню
-    //         handleMenu();
-    //         break;
-    //     case e.target.matches("menu>ul>li>a"): //якоря
-    //         handleMenu();
-    //         smoothScroll(e, e.target);
-    //         break;
-    //     default:
-    //         console.log("[eq")
-    //         return;
-    // }
-
     document.addEventListener("click", (e) => {
         switch (true) {
             case !!e.target.closest(".close-btn"):
