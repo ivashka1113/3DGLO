@@ -19,7 +19,6 @@ const menu = () => {
         menu.classList.toggle("active-menu");
     }
 
-
     document.addEventListener("click", (e) => {
         switch (true) {
             case !!e.target.closest(".close-btn"):
@@ -32,6 +31,9 @@ const menu = () => {
                 break;
             case !!(e.target.closest('main>a')):
                 smoothScroll(e, e.target.closest('main>a'));
+                if (menu.classList.contains("active-menu")) {
+                    handleMenu();
+                }
                 break;
             case !e.target.closest("menu"):
                 if (menu.classList.contains("active-menu")) {
