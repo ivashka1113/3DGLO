@@ -13,4 +13,4 @@ modal();
 calcValid();
 formValid();
 tabs();
-slider();
+slider("portfolio-content", "portfolio-item", "portfolio-dots", "dot", "portfolio-item-active", "dot-active", "portfolio-btn");
