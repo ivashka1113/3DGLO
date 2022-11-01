@@ -1,6 +1,6 @@
 "use strict";
 
-const slider = (sliderBlockClass, slidesClass, dotsBlockClass, dotsClass, itemActiveClass = "portfolio-item-active", dotActiveClass = "dot-active", slideBtnClass) => {
+const slider = (sliderBlockClass, slidesClass, dotsBlockClass, dotsClass, slideBtnClass, itemActiveClass = "portfolio-item-active", dotActiveClass = "dot-active") => {
 
     const sliderBlock = document.querySelector(`.${sliderBlockClass}`);
     const slides = document.querySelectorAll(`.${slidesClass}`);
