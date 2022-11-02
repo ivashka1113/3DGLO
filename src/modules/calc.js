@@ -36,8 +36,8 @@ const calc = (price = 100) => {
                     clearInterval(id);
                 }
 
-                Math.abs(totalValue - total.textContent) > 10000 ? i += 1000 : Math.abs(totalValue - total.textContent) > 1000 ? i += 100 : Math.abs(totalValue - total.textContent) > 100 ? i += 10 : Math.abs(totalValue - total.textContent) === 0 ? i : i++;
-                console.log(Math.abs(totalValue - total.textContent));
+                i = Math.abs(totalValue - total.textContent) > 10000 ? i += 1000 : Math.abs(totalValue - total.textContent) > 1000 ? i += 100 : Math.abs(totalValue - total.textContent) > 100 ? i += 10 : Math.abs(totalValue - total.textContent) > 10 ? i++ : Math.abs(totalValue - total.textContent) < 1 ? i = i + 0.1 : i = 0;
+
             }, 1);
 
         } else {
@@ -47,6 +47,7 @@ const calc = (price = 100) => {
 
     calcBlock.addEventListener('input', () => {
         clearInterval(id);
+        console.log("Калк")
         countCalc();
     })
 }
