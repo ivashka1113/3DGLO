@@ -15,15 +15,20 @@ const calc = (price = 100) => {
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = +calcSquare.value;
-        const calcCountValue = 1 + (0.1 * (+calcCount.value));
+        let calcCountValue = 1 + (0.1 * +calcCount.value);
+        if (+calcCount.value === 4) calcCountValue = 1.4;
         const calcDayValue = !calcDay.value ? 1 : +calcDay.value >= 10 ? 1 : +calcDay.value > 5 ? 1.5 : 2;
         let totalValue = 0;
+        // console.log(+calcCount.value, calcCountValue)
+
+
 
         let i;
         let oldValue = total.textContent;
 
         if (calcTypeValue && calcSquareValue) {
-            totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+            totalValue = Math.round(price * +calcTypeValue * +calcSquareValue * +calcCountValue * +calcDayValue);
+            console.log(price, +calcTypeValue, calcSquareValue, calcCountValue, calcDayValue, totalValue)
             i = 0;
             id = setInterval(() => {
                 if (totalValue > +total.textContent) {
