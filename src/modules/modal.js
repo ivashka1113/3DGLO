@@ -26,9 +26,7 @@ const modal = () => {
                 draw(progress) {
                     modal.style.display = "block";
                     modal.style.transform = `translateY(${ 100 *(1 - progress)}%)`;
-                    setTimeout(() => {
-                        modalContent.style.opacity = progress;
-                    }, 2000)
+                    modalContent.style.opacity = progress;
                 }
             });
         } else {
@@ -48,16 +46,9 @@ const modal = () => {
                     },
                     draw(progress) {
                         modalContent.style.opacity = 1 - progress;
-                        setTimeout(() => {
-                            modal.style.transform = `translateY(${(100 * progress)}%)`;
-                        }, 1000)
-
-                        setTimeout(() => {
-                            modal.style.display = "none";
-                        }, 3000)
-
+                        modal.style.transform = `translateY(${(100 * progress)}%)`;
+                        if (progress === 1) modal.style.display = "none";
                     }
-
                 });
             } else {
                 modal.style.transform = `translateY(100%)`;

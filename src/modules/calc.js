@@ -27,8 +27,8 @@ const calc = (price = 100) => {
 
 
         if (calcTypeValue && calcSquareValue) {
-            totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-
+            totalValue = Math.round(price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue);
+            console.log(calcTypeValue, calcSquareValue, calcCountValue, calcDayValue, totalValue);
             animate({
                 duration: 1000,
                 timing(timeFraction) {
