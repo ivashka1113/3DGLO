@@ -24,16 +24,14 @@ const calc = (price = 100) => {
 
         if (calcTypeValue && calcSquareValue) {
             totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-            console.log(price, calcTypeValue, calcSquareValue, calcCountValue, calcDayValue);
             i = 0;
             id = setInterval(() => {
                 if (totalValue > +total.textContent) {
-                    console.log(10 ** Math.abs(totalValue - total.textContent).toString().length - 1);
                     total.textContent = +oldValue + i;
                 } else if (totalValue < +total.textContent) {
                     total.textContent = +oldValue - i;
                 } else if (+total.textContent === totalValue) {
-                    oldValue = totalValue;
+
                     clearInterval(id);
                 }
 
@@ -48,7 +46,6 @@ const calc = (price = 100) => {
 
     calcBlock.addEventListener('input', () => {
         clearInterval(id);
-        console.log("calc")
         countCalc();
     })
 }
