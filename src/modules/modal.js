@@ -1,36 +1,70 @@
 "use strict";
 
+import {
+    animate
+} from "./helpers";
+
 const modal = () => {
     const buttons = document.querySelectorAll(".popup-btn");
     const modal = document.querySelector(".popup");
+    const modalContent = modal.querySelector(".popup-content");
     modal.style.transform = 'translateY(100%)';
-    let count = 50;
-    let modalHandle;
+    modalContent.style.opacity = 0;
 
 
     buttons.forEach(item => item.addEventListener("click", () => {
-        modal.style.display = "block";
-        screen.width > 768 ? modalShow() : modal.style.transform = '';
-
+        modalShow();
     }));
 
-
     const modalShow = () => {
-        if (count > 0) {
-            count--;
-            modalHandle = requestAnimationFrame(modalShow);
-            modal.style.transform = `translateY(${-count * 3}%)`;
+        if (screen.width > 768) {
+            animate({
+                duration: 2000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    modal.style.display = "block";
+                    modal.style.transform = `translateY(${ 100 *(1 - progress)}%)`;
+                    setTimeout(() => {
+                        modalContent.style.opacity = progress;
+                    }, 2000)
+                }
+            });
         } else {
-            cancelAnimationFrame(modalHandle);
+            modal.style.transform = '';
+            modalContent.style.opacity = 1;
+            modal.style.display = "block";
         }
-
     }
 
     modal.addEventListener("click", (e) => {
         if (!e.target.closest(".popup-content") || e.target.classList.contains("popup-close")) {
-            count = 50;
-            modal.style.transform = 'translateY(100%)';
-            modal.style.display = "none";
+            if (screen.width > 768) {
+                animate({
+                    duration: 2000,
+                    timing(timeFraction) {
+                        return timeFraction;
+                    },
+                    draw(progress) {
+                        modalContent.style.opacity = 1 - progress;
+                        setTimeout(() => {
+                            modal.style.transform = `translateY(${(100 * progress)}%)`;
+                        }, 1000)
+
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                        }, 3000)
+
+                    }
+
+                });
+            } else {
+                modal.style.transform = `translateY(100%)`;
+                modal.style.display = "none";
+                modalContent.style.opacity = 0;
+            }
+
         }
     })
 }
