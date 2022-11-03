@@ -1,5 +1,9 @@
 "use strict";
 
+import {
+    animate
+} from "./helpers";
+
 const calc = (price = 100) => {
     const calcBlock = document.querySelector(".calc-block");
     const calcType = document.querySelector(".calc-type");
@@ -7,8 +11,9 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector(".calc-count");
     const calcDay = document.querySelector(".calc-day");
     const total = document.getElementById("total");
+    let oldValue = 0;
+    let totalValue = 0;
 
-    let id;
 
 
 
@@ -17,38 +22,35 @@ const calc = (price = 100) => {
         const calcSquareValue = +calcSquare.value;
         const calcCountValue = 1 + (0.1 * (+calcCount.value));
         const calcDayValue = !calcDay.value ? 1 : +calcDay.value >= 10 ? 1 : +calcDay.value > 5 ? 1.5 : 2;
-        let totalValue = 0;
+        oldValue = totalValue;
+        totalValue = 0;
 
-        let i;
-        let oldValue = total.textContent;
 
         if (calcTypeValue && calcSquareValue) {
             totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-            console.log(price, calcTypeValue, calcSquareValue, calcCountValue, calcDayValue);
-            i = 0;
-            id = setInterval(() => {
-                if (totalValue > +total.textContent) {
-                    console.log(10 ** Math.abs(totalValue - total.textContent).toString().length - 1);
-                    total.textContent = +oldValue + i;
-                } else if (totalValue < +total.textContent) {
-                    total.textContent = +oldValue - i;
-                } else if (+total.textContent === totalValue) {
-                    oldValue = totalValue;
-                    clearInterval(id);
+
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    if (totalValue > oldValue) {
+                        total.textContent = oldValue + parseInt((totalValue - oldValue) * progress);
+                    } else if (totalValue < oldValue) {
+                        total.textContent = parseInt((oldValue - ((oldValue - totalValue) * progress)));
+                    } else {
+                        total.textContent = totalValue;
+                    }
                 }
-
-                i += (10 ** (Math.abs(totalValue - total.textContent).toString().length - 1));
-
-            }, 100);
+            });
 
         } else {
-            total.textContent = totalValue;
+            total.textContent = 0;
         }
     }
 
     calcBlock.addEventListener('input', () => {
-        clearInterval(id);
-        console.log("calc")
         countCalc();
     })
 }
