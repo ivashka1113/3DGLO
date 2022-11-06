@@ -65,7 +65,7 @@ const formValid = () => {
             const form = e.target.closest("form");
             if (form === null) return;
             const formItem = [form.querySelector("form input[type=text]"), form.querySelector("form input[type=email]"), form.querySelector("form input[type=tel]")]
-            validator(formItem);
+            console.log(validator(formItem));
         })
 
     })

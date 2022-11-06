@@ -31,8 +31,8 @@ const validator = (formItem) => {
                             item.classList.remove("error");
                         }
         }
-        return flag;
     })
+    return flag;
 }
 
 
