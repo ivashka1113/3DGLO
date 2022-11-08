@@ -78,11 +78,10 @@ const formValid = () => {
 
     formBtn.forEach((item) => {
         item.addEventListener("click", (e) => {
-            e.preventDefault();
             const form = e.target.closest("form");
             if (form === null) return;
             const formItem = [form.querySelector("form input[type=text]"), form.querySelector("form input[type=email]"), form.querySelector("form input[type=tel]")]
-            console.log(validator(formItem));
+            validator(formItem);
         })
 
     })
