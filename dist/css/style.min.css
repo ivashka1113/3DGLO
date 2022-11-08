@@ -1184,3 +1184,12 @@ footer .web {
 .error {
     background: #ffdddd;
 }
+
+.load-img {
+    transform: rotate(0deg);
+    transition: transform 1s;
+}
+
+.active {
+    transform: rotate(360deg);
+}

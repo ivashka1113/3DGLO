@@ -5,11 +5,13 @@ const sendForm = ({
     someElement = []
 }) => {
     const form = document.getElementById(formId);
-    const statusBlock = document.createElement("div");
-    statusBlock.style.color = "white"
-    const loadText = "Загрузка...";
-    const errorText = "Ошибка...";
-    const successText = "Спасибо, наш менеджер свяжется с вами!";
+    const statusBlock = document.createElement("img");
+    statusBlock.classList.add("load-img");
+    const loadUrl = "../dist/images/loading-svgrepo-com.svg";
+    const successUrl = "../dist/images/success-svgrepo-com.svg";
+    const errorUrl = "../dist/images/error-svgrepo-com.svg";
+
+    statusBlock.style.width = "50px";
 
     const validate = (list) => {
         let success = true;
@@ -37,7 +39,7 @@ const sendForm = ({
         const formBody = {};
         const formElements = form.querySelectorAll("input");
 
-        statusBlock.textContent = loadText
+
         form.append(statusBlock)
 
         formData.forEach((val, key) => {
@@ -54,18 +56,25 @@ const sendForm = ({
         })
 
         if (validate(formElements)) {
+            statusBlock.src = loadUrl;
             sendData(formBody).then(data => {
                     formElements.forEach(input => {
-                        statusBlock.textContent = successText;
+                        statusBlock.src = successUrl;
+                        statusBlock.classList.add("active");
                         input.value = "";
                     })
+                }).then(data => {
+                    setTimeout(() => {
+                        statusBlock.remove();
+                        statusBlock.classList.remove("active");
+                    }, 2000)
                 })
                 .catch(error => {
-                    statusBlock.textContent = errorText;
+                    statusBlock.src = errorUrl;
                 });
         } else {
             alert("Данные не валидны");
-            statusBlock.textContent = "";
+            statusBlock.src = errorUrl;
         }
 
     }
@@ -84,4 +93,4 @@ const sendForm = ({
 
 }
 
-export default sendForm
+export default sendForm;
