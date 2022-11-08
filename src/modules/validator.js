@@ -24,7 +24,7 @@ const validator = (formItem) => {
                         break;
                     }
                     case item.matches("form input[type=tel]"):
-                        if (!item.value.match(/\+?[0-9]{6,9}/gi)) {
+                        if (!item.value.match(/^((\+7|7|8)+\(?([0-9]){3}\)?)(\-?([0-9]){3})(\-?([0-9]){2}){2}$/g)) {
                             flag = false;
                             item.classList.add("error");
                         } else {

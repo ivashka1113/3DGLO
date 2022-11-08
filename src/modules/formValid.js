@@ -3,14 +3,21 @@
 import validator from './validator.js';
 
 const formValid = () => {
-    const formItemsText = document.querySelectorAll("form input[type=text], form input[placeholder='Ваше сообщение']");
+    const formItemsText = document.querySelectorAll("form input[type=text]");
     const formItemsEmail = document.querySelectorAll("form input[type=email]");
     const formItemsTel = document.querySelectorAll("form input[type=tel]");
     const formBtn = document.querySelectorAll(".form-btn");
+    const formItemsMes = document.querySelectorAll("form input[name='user_message']")
 
     formItemsText.forEach((formItemText) => {
         formItemText.addEventListener("input", () => {
             formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/g, "");
+        })
+    })
+
+    formItemsMes.forEach((formItemMes) => {
+        formItemMes.addEventListener("input", () => {
+            formItemMes.value = formItemMes.value.replace(/[^а-яА-Я0-9\s\-\,\.\:\;]+/g, "");
         })
     })
 
@@ -22,13 +29,12 @@ const formValid = () => {
 
     formItemsTel.forEach((formItemTel) => {
         formItemTel.addEventListener("input", () => {
-            formItemTel.value = formItemTel.value.replace(/[^\d\\(\\)\-]+/g, "");
+            formItemTel.value = formItemTel.value.replace(/[^\d\\(\\)\-\+]+/g, "");
         })
     })
 
     formItemsText.forEach((formItemText) => {
         formItemText.addEventListener("blur", () => {
-            console.log("Сообщение");
             formItemText.value = formItemText.value.replace(/[\s]+/g, " ");
             formItemText.value = formItemText.value.replace(/[\-]+/g, "-");
             formItemText.value = formItemText.value.replace(/[\s\-]+/g, "-");
@@ -37,6 +43,17 @@ const formValid = () => {
             formItemText.value = formItemText.value.replace(/( |^)[а-яА-Я]/g, function (x) {
                 return x.toUpperCase();
             });
+
+        })
+    })
+
+    formItemsMes.forEach((formItemMes) => {
+        formItemMes.addEventListener("blur", () => {
+            formItemMes.value = formItemMes.value.replace(/[\s]+/g, " ");
+            formItemMes.value = formItemMes.value.replace(/[\-]+/g, "-");
+            formItemMes.value = formItemMes.value.replace(/[\s\-]+/g, "-");
+            formItemMes.value = formItemMes.value.replace(/^[\s\-]+/g, "");
+            formItemMes.value = formItemMes.value.replace(/[\s\-]+$/g, "");
 
         })
     })
