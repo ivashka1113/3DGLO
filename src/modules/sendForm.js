@@ -48,9 +48,9 @@ const sendForm = ({
 
         someElement.forEach(elem => {
             const element = document.getElementById(elem.id)
-            if (elem.type === "block") {
+            if (elem.type === "block" && element.textContent != 0) {
                 formBody[elem.id] = element.textContent;
-            } else if (elem.type === "input") {
+            } else if (elem.type === "input" && element.textContent != "") {
                 formBody[elem.id] = element.value;
             }
         })
@@ -73,8 +73,10 @@ const sendForm = ({
                     statusBlock.src = errorUrl;
                 });
         } else {
-            alert("Данные не валидны");
             statusBlock.src = errorUrl;
+            setTimeout(() => {
+                statusBlock.remove();
+            }, 2000)
         }
 
     }

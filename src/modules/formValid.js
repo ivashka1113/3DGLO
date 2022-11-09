@@ -7,7 +7,8 @@ const formValid = () => {
     const formItemsEmail = document.querySelectorAll("form input[type=email]");
     const formItemsTel = document.querySelectorAll("form input[type=tel]");
     const formBtn = document.querySelectorAll(".form-btn");
-    const formItemsMes = document.querySelectorAll("form input[name='user_message']")
+    const formItemsMes = document.querySelectorAll("form input[name='user_message']");
+    const formItems = document.querySelectorAll("form input")
 
     formItemsText.forEach((formItemText) => {
         formItemText.addEventListener("input", () => {
@@ -76,12 +77,12 @@ const formValid = () => {
         })
     })
 
-    formBtn.forEach((item) => {
-        item.addEventListener("click", (e) => {
+    formItems.forEach((item) => {
+        item.addEventListener("input", (e) => {
+            console.log("input")
             const form = e.target.closest("form");
             if (form === null) return;
-            const formItem = [form.querySelector("form input[type=text]"), form.querySelector("form input[type=email]"), form.querySelector("form input[type=tel]")]
-            validator(formItem);
+            validator(e.target);
         })
 
     })
