@@ -9,9 +9,9 @@ const sendForm = ({
     const form = document.getElementById(formId);
     const statusBlock = document.createElement("img");
     statusBlock.classList.add("load-img");
-    const loadUrl = "./images/loading-svgrepo-com.svg";
-    const successUrl = "./images/success-svgrepo-com.svg";
-    const errorUrl = "./images/error-svgrepo-com.svg";
+    const loadUrl = "../images/loading-svgrepo-com.svg";
+    const successUrl = "../images/success-svgrepo-com.svg";
+    const errorUrl = "../images/error-svgrepo-com.svg";
 
     statusBlock.style.width = "50px";
 
