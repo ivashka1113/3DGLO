@@ -79,7 +79,6 @@ const formValid = () => {
 
     formItems.forEach((item) => {
         item.addEventListener("input", (e) => {
-            console.log("input")
             const form = e.target.closest("form");
             if (form === null) return;
             validator(e.target);

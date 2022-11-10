@@ -3,7 +3,6 @@
 const validator = (item) => {
     let flag = true;
 
-
     switch (true) {
         case item.matches("form input[type=text]"):
             if (!item.value.match(/[a-яA-я]{2}/gi)) {
