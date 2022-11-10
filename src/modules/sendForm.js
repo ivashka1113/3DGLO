@@ -1,5 +1,7 @@
 "use strict";
 
+import validator from "./validator";
+
 const sendForm = ({
     formId,
     someElement = []
@@ -15,6 +17,8 @@ const sendForm = ({
 
     const validate = (list) => {
         let success = true;
+
+        validator(list);
 
         list.forEach(input => {
             if (input.classList.contains("error")) success = false;
@@ -89,7 +93,7 @@ const sendForm = ({
             submitForm();
         })
     } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
     }
 
 }
