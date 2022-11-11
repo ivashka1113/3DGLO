@@ -46,6 +46,9 @@ const sendForm = ({
         form.append(statusBlock)
 
         formData.forEach((val, key) => {
+            if (key === 'user_message' && val === '') {
+                return
+            }
             formBody[key] = val;
         })
 
@@ -53,7 +56,7 @@ const sendForm = ({
             const element = document.getElementById(elem.id)
             if (elem.type === "block" && element.textContent != 0) {
                 formBody[elem.id] = element.textContent;
-            } else if (elem.type === "input" && element.textContent != "") {
+            } else if (elem.type === "input" && element.value != "") {
                 formBody[elem.id] = element.value;
             }
         })
